@@ -1,5 +1,5 @@
 # -Ecommerce-Follow-Along
-shivanshsjs govind
+
 # Project Name
 
 ECOM WEBSITE
