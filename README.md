@@ -26,7 +26,6 @@ In the first milestone, we covered the following key aspects of the project:
 3. **Initial Planning**: Outlined the project's roadmap, setting clear milestones and deliverables.
 4. **Version Control with Git**: Learned how to initialize a Git repository, manage branches, and push changes to GitHub.
 5. **Basic Functionality**: Implemented the core functionality of the project, laying the foundation for future development.
-
 ## Milestone 2: Further
 
 In the second milestone, we covered the following key aspects of the project:
