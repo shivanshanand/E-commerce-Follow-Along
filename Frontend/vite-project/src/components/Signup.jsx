@@ -5,6 +5,27 @@ import { IoCamera } from "react-icons/io5";
 const Signup = () => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [image, setImage] = useState(null);
+  const [errors, setErrors] = useState({});
+
+  const validateForm = (userDetails) => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!userDetails.name || userDetails.name.length < 3) {
+      newErrors.name = "Name must be at least 3 characters long.";
+    }
+
+    if (!userDetails.email || !emailRegex.test(userDetails.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!userDetails.password || userDetails.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters long.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
@@ -15,6 +36,10 @@ const Signup = () => {
       email: formData.get("email"),
       password: formData.get("password"),
     };
+
+    if (!validateForm(userDetails)) {
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:7000/create", {
@@ -101,6 +126,9 @@ const Signup = () => {
               className="p-3 rounded-md border border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-gray-900 text-gray-300"
               required
             />
+            {errors.name && (
+              <p className="text-sm text-red-500 mt-1">{errors.name}</p>
+            )}
           </div>
 
           <div className="flex flex-col">
@@ -114,9 +142,14 @@ const Signup = () => {
               type="email"
               placeholder="Enter your email"
               name="email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              title="Please enter a valid email address (e.g., user@example.com)"
               className="p-3 rounded-md border border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-gray-900 text-gray-300"
               required
             />
+            {errors.email && (
+              <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+            )}
           </div>
 
           <div className="flex flex-col">
@@ -130,9 +163,15 @@ const Signup = () => {
               type="password"
               placeholder="Enter your password"
               name="password"
+              minLength="8"
+              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+              title="Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character"
               className="p-3 rounded-md border border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-gray-900 text-gray-300"
               required
             />
+            {errors.password && (
+              <p className="text-sm text-red-500 mt-1">{errors.password}</p>
+            )}
           </div>
         </div>
 
