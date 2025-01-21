@@ -2,17 +2,19 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { userModel } = require("./model/user.model");
 const multer = require("multer");
+const fs = require("fs");
+const cors = require("cors");
+const bcrypt = require("bcryptjs");
 
-// Initialize express
 let app = express();
 
-// Middleware to parse JSON requests
 app.use(express.json());
+app.use(cors());
 
 // MongoDB connection function
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(
+    const connect = await mongoose.connect(
       "mongodb+srv://shivanshanand962:RKnfXiWfz2rgkOPz@cluster0.ibiuh.mongodb.net/Ecomm-Follow-DB",
       {
         useNewUrlParser: true,
@@ -22,7 +24,6 @@ const connectDB = async () => {
     console.log("MongoDB connected");
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
-    process.exit(1);
   }
 };
 
@@ -34,10 +35,13 @@ app.get("/home", (req, res) => {
 
 // Create a user
 app.post("/create", async (req, res) => {
-  let payload = req.body;
+  let { name, email, password } = req.body;
 
   try {
-    let newuser = new userModel(payload);
+    const hashedpass = await bcrypt.hash(password, 10);
+    const userDetails = { name, password: hashedpass, email };
+
+    const newuser = new userModel(userDetails);
     await newuser.save();
     res
       .status(201)
@@ -48,26 +52,67 @@ app.post("/create", async (req, res) => {
   }
 });
 
-// const passmongoatlas = "RKnfXiWfz2rgkOPz";
+//login  user
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
 
-const storage = multer.diskStorage({
+  const user = await userModel.findOne({ name: username });
+  if (!user) {
+    return res.status(400).json({ message: "User not found" });
+  }
+
+  const matchpass = await bcrypt.compare(password, user.password);
+
+  if (matchpass) {
+    res.status(200).json({ message: "Login successful", user });
+  } else {
+    res.status(400).json({ message: "Invalid credentials" });
+  }
+});
+
+const storedFile = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    const uploadFolder = "uploads/";
+    if (!fs.existsSync(uploadFolder)) {
+      fs.mkdirSync(uploadFolder);
+    }
+    cb(null, uploadFolder);
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + "-" + Date.now() + "-" + file.originalname);
+    cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storedFile,
+  limits: { fileSize: 5 * 1024 * 1024 }, //5MB
+  fileFilter: function (req, file, cb) {
+    if (
+      file.mimetype === "image/jpeg" ||
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/gif"
+    ) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only images allowed!!"));
+    }
+  },
+});
 
-app.post("/upload", upload.single("myFile"), (req, res) => {
+app.post("/upload", upload.array("myFiles"), (req, res) => {
   try {
-    console.log(req.file);
+    // console.log(req.files);
+    res.status(200).send({
+      message: "Files uploaded successfully!",
+      files: req.files.map((file) => ({
+        filename: file.filename,
+        path: file.path,
+      })),
+    });
     res.send({ message: "file uploaded successfully" });
   } catch (error) {
     console.log(error);
-    res.send({ error: "error" });
+    res.status(400).send({ error: error.message });
   }
 });
 
