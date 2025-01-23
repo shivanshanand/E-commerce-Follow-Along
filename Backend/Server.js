@@ -33,6 +33,10 @@ app.get("/home", (req, res) => {
   res.send("<h1>Hello, welcome to the Home route!</h1>");
 });
 
+app.listen(7000, () => {
+  console.log("Server running on port 7000");
+});
+
 // Create a user
 app.post("/create", async (req, res) => {
   let { name, email, password } = req.body;
@@ -117,6 +121,6 @@ app.post("/upload", upload.array("myFiles"), (req, res) => {
 });
 
 // Start the server
-app.listen(7000, () => {
-  console.log("Server running on port 7000");
-});
+// app.listen(7000, () => {
+//   console.log("Server running on port 7000");
+// });

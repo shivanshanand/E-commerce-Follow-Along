@@ -60,3 +60,10 @@ In the second milestone, we covered the following key aspects of the project:
 
 1. Encrypted passowrd using bcryptjs library
 2. also stored user data in databse with password being encrypted
+
+## Milestone 7: Further
+
+In the second milestone, we covered the following key aspects of the project:
+
+1. created login endpoint accepting user credential like name and password
+2. used bcrypt to hash password and finally comparing the credentials with databse and logging user 
