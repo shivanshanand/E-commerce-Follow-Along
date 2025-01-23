@@ -42,6 +42,11 @@ app.post("/create", async (req, res) => {
   let { name, email, password } = req.body;
 
   try {
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already registered" });
+    }
+
     const hashedpass = await bcrypt.hash(password, 10);
     const userDetails = { name, password: hashedpass, email };
 
