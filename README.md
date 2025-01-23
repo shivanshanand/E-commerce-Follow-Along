@@ -67,3 +67,9 @@ In the second milestone, we covered the following key aspects of the project:
 
 1. created login endpoint accepting user credential like name and password
 2. used bcrypt to hash password and finally comparing the credentials with databse and logging user 
+
+## Milestone 8: Further
+
+In the second milestone, we covered the following key aspects of the project:
+
+1. Created a card component to display all products with image,name and price
