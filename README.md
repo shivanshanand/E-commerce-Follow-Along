@@ -1,75 +1,70 @@
-# -Ecommerce-Follow-Along
+# Ecommerce-Follow-Along
 
-# Project Name
+     A hands-on project demonstrating the power of the MERN stack by creating a functional e-commerce platform.
 
-ECOM WEBSITE
+## E-Commerce Application using MERN Stack
 
-## Project Description
+Welcome to the E-Commerce Application project! 🚀 This project involves building a full-fledged e-commerce platform from scratch using the **MERN stack** (MongoDB, Express.js, React.js, and Node.js). This repository serves as a comprehensive guide and documentation for the application.
 
-This project is an e-commerce website built using the MERN stack. The primary objective is to create a fully functional online store that allows users to browse and purchase products securely
+---
 
-## Key Features
+## 🌟 Features of the Application
 
-- **MERN Stack**: The project will be built using the MERN stack (MongoDB, Express.js, React, Node.js).
-- **REST API Creation**: Learn to build scalable APIs through mentor-guided sessions.
-- **Authentication**: Implement secure login and registration functionalities.
-- **Database Schema Design**: Explore how to create structured data models using MongoDB.
-- **Backend Development**: Set up robust server-side logic with Node.js and Express.
-- **Frontend Development**: Use React to build an interactive and dynamic user interface.
+- **User Authentication**: Secure registration and login system.
+- **Product Management**: Add, update, and retrieve product details.
+- **Order Handling**: Seamlessly manage customer orders.
+- **REST API Integration**: Well-structured endpoints for interaction.
+- **Database Schema Design**: Efficient schema structure in MongoDB.
+- **Authentication & Authorization**: Role-based access for secure transactions.
 
-## Milestone 1: Project Overview
+## Milestones
 
-In this milestone, we covered the following key aspects of the project:
+### Milestone 1: Repository Creation
 
-1. set up project in git hub
-2. also added a README.md file to update about the project changes as we move further
+- Created a GitHub repository named "Ecommerce-Follow-Along" with a README file.
 
-## Milestone 2: Further
+### Milestone 2: Initial Setup & Login Page
 
-In this milestone, we covered the following key aspects of the project:
+- Pushed code to the GitHub repository.
+- Created separate folders for frontend and backend.
+- Implemented a functional Login Page in the frontend.
 
-1. created a structured folder hierarchy for project
-2. set up react for frontend and nodejs for backend 
-3. configured the tailwind css for styling 
-4. Build the login page
+### Milestone 3: Project Setup & Foundation
 
-## Milestone 3: Further
+- Established project structure, database connection, and basic error handling.
 
-In this milestone, we covered the following key aspects of the project:
+### Milestone 4: User Authentication & File Uploads
 
-1. used nodejs and express to set up backend
-2. established the connection with mongoDB to store the data of user efficiently    
+- Implemented user registration, login, and file upload functionalities.
+- Integrated user authentication and authorization middleware.
 
-## Milestone 4: Further
+### Milestone 5: User Signup
 
-In this milestone, we covered the following key aspects of the project:
+- Created the Signup page with form validation.
 
-1. created a usermodel with name, password and emailin in model folder
-2. also used multer to upload multimedia like images
+### Milestone 6
 
-## Milestone 5: Further
+1. **Encrypt Password:**
 
-In this milestone, we covered the following key aspects of the project:
+   - Hash the user's password using `bcrypt` during signup.
+   - Store the hashed password in the database.
 
-1. Created frontend ui with signup page
-2. implemented form validation
+2. **Store User Data:**
+   - Save all user data (e.g., name, email) in the database.
+   - Ensure the password remains encrypted and secure.
 
-## Milestone 6: Further
+### Milestone 7:
 
-In this milestone, we covered the following key aspects of the project:
+**Login Endpoint**
 
-1. Encrypted passowrd using bcryptjs library
-2. also stored user data in databse with password being encrypted
+1. **Accept User Credentials:** Receive user input for email/username and password.
+2. **Retrieve User:** Query the database to find the user associated with the provided credentials.
+3. **Password Validation:**
+   - Hash the entered password using `bcrypt`.
+   - Compare the hashed input with the stored hashed password in the database.
+   - If they match, authentication is successful.
 
-## Milestone 7: Further
+### Milestone 8: Product Card & Homepage Layout
 
-In this milestone, we covered the following key aspects of the project:
-
-1. created login endpoint accepting user credential like name and password
-2. used bcrypt to hash password and finally comparing the credentials with databse and logging user 
-
-## Milestone 8: Further
-
-In this milestone, we covered the following key aspects of the project:
-
-1. Created a card component to display all products with image,name and price
+- Created a reusable Card Component with props for product details.
+- Designed the Homepage layout using a grid or flexbox to display multiple product cards.
