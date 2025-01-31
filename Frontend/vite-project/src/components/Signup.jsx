@@ -122,6 +122,7 @@ const Signup = () => {
             <input
               type="text"
               placeholder="Enter your name"
+              id="user"
               name="user"
               className="p-3 rounded-md border border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-gray-900 text-gray-300"
               required

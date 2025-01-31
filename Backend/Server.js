@@ -5,6 +5,7 @@ const multer = require("multer");
 const fs = require("fs");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
+const productRoutes = require("./routes/product.route");
 
 let app = express();
 
@@ -33,10 +34,6 @@ app.get("/home", (req, res) => {
   res.send("<h1>Hello, welcome to the Home route!</h1>");
 });
 
-app.listen(7000, () => {
-  console.log("Server running on port 7000");
-});
-
 // Create a user
 app.post("/create", async (req, res) => {
   let { name, email, password } = req.body;
@@ -52,6 +49,7 @@ app.post("/create", async (req, res) => {
 
     const newuser = new userModel(userDetails);
     await newuser.save();
+
     res
       .status(201)
       .json({ message: "User created successfully", user: newuser });
@@ -125,7 +123,8 @@ app.post("/upload", upload.array("myFiles"), (req, res) => {
   }
 });
 
-// Start the server
-// app.listen(7000, () => {
-//   console.log("Server running on port 7000");
-// });
+app.use(productRoutes);
+
+app.listen(7000, () => {
+  console.log("Server running on port 7000");
+});
