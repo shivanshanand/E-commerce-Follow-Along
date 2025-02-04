@@ -159,3 +159,42 @@ project-root/
 
 ---
 
+## Milestone 11: Fetching and Displaying Products
+
+- **Backend API**: Created an endpoint to send all product data from MongoDB.
+- **Frontend Data Fetching**: Implemented a function to retrieve product data from the backend.
+- **Dynamic Display**: Passed fetched data to the `ProductCard` component to render dynamically.
+- **Component Reusability**: Utilized `ProductCard` to display multiple products efficiently.
+- **Understanding Data Flow**: Learned how to send, receive, and display data using API calls.
+- **GitHub Updates**: Committed changes for API integration and dynamic rendering.
+
+```
+project-root/
+├── backend/
+│   ├── config/         # Stores database and multer configurations
+│   │   ├── database.js
+│   │   └── multer.js
+│   ├── controllers/    # Contains route handling logic
+│   │   ├── product.controller.js
+│   │   └── user.controller.js
+│   ├── models/         # Defines MongoDB schemas using Mongoose
+│   │   ├── product.model.js
+│   │   └── user.model.js
+│   ├── routes/         # Defines API routes
+│   │   ├── product.routes.js
+│   │   └── user.routes.js
+│   ├── uploads/        # Stores uploaded files
+│   ├── utils/          # (Optional) Helper functions
+│   ├── node_modules/   # Node.js dependencies
+│   ├── .env            # Environment variables
+│   ├── package-lock.json
+│   ├── package.json
+│   └── server.js       # Main server file
+├── frontend/           # Frontend-related code
+├── .gitignore          # Git ignore file
+├── package.json        # Root package file
+└── README.md           # Documentation
+
+```
+
+---
