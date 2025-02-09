@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "./Card";
 import { Nav } from "./Nav";
+import Footer from "./Footer";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -51,12 +52,14 @@ const Home = () => {
               index={item._id}
               name={item.name}
               price={item.price}
+              category={item.category}
               description={item.description}
               image={item.image}
             />
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

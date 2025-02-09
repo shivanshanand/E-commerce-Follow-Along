@@ -33,7 +33,7 @@ export const Nav = () => {
           <Link to="#my-products">My Products</Link>
         </li>
         <li className="nav-link text-white cursor-pointer">
-          <Link to="#cart">Cart</Link>
+          <Link to="/cart">Cart</Link>
         </li>
       </div>
     </div>
