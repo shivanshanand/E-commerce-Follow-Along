@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const Card = ({ index, name, image, price, description, category }) => {
@@ -15,7 +14,7 @@ const Card = ({ index, name, image, price, description, category }) => {
 
   const handleDelete = async () => {
     if (!index) {
-      alert("product id is missing");
+      alert("Product ID is missing");
       return;
     }
     const confirmDelete = window.confirm(
@@ -45,13 +44,9 @@ const Card = ({ index, name, image, price, description, category }) => {
   };
 
   return (
-    <motion.div
-      className="bg-white/10 backdrop-blur-lg p-4 rounded-2xl shadow-lg w-72 border border-gray-700 h-[32rem] flex flex-col transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.97 }}
-    >
+    <div className="bg-gray-800 p-4 rounded-xl shadow-lg w-72 h-[32rem] flex flex-col border border-gray-700">
       {/* Product Image */}
-      <div className="h-40 w-full">
+      <div className="h-40 w-full mb-3">
         <img
           src={image}
           alt={name}
@@ -60,39 +55,37 @@ const Card = ({ index, name, image, price, description, category }) => {
       </div>
 
       {/* Product Name */}
-      <h2 className="text-2xl font-semibold mt-3 text-white">{name}</h2>
+      <h2 className="text-2xl font-semibold text-white">{name}</h2>
 
-      {/* Price & Discount Section */}
-      <div className="mt-2 flex items-center justify-center gap-2">
-        <span className="text-red-400 text-xl font-bold">${price}</span>
-      </div>
+      {/* Price */}
+      <div className="mt-2 text-red-400 text-xl font-bold">${price}</div>
 
-      {/* Category & Ratings */}
-      <div className="flex justify-between mt-2 text-sm">
-        <span className="bg-gray-800 text-gray-200 px-3 py-1 rounded-full">
+      {/* Category */}
+      <div className="mt-2 text-sm">
+        <span className="bg-gray-600 text-gray-200 px-3 py-1 rounded-full">
           {category}
         </span>
-        {/* <span className="text-yellow-400 font-semibold">{ratings} ⭐</span> */}
       </div>
 
       {/* Description */}
       <p className="mt-2 text-sm text-gray-300 flex-grow px-2">{description}</p>
 
-      {/* Edit Button */}
-      <button
-        className="mt-4 text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700"
-        onClick={handleEdit}
-      >
-        Edit
-      </button>
-
-      <button
-        className="mt-4 text-white bg-red-600 px-4 py-2 rounded-lg hover:bg-red-700"
-        onClick={handleDelete}
-      >
-        Delete
-      </button>
-    </motion.div>
+      {/* Action Buttons */}
+      <div className="mt-4 flex gap-2">
+        <button
+          className="text-white bg-blue-700 px-4 py-2 rounded-lg hover:bg-blue-800"
+          onClick={handleEdit}
+        >
+          Edit
+        </button>
+        <button
+          className="text-white bg-red-700 px-4 py-2 rounded-lg hover:bg-red-800"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
   );
 };
 

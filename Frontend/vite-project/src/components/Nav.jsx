@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi"; // Import the hamburger menu icon from React Icons
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
