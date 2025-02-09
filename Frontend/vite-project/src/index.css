@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-link:hover {
+  font-weight: 700;
+  color: chocolate;
+}
