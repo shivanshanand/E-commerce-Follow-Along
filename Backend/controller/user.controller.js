@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const User = require("../model/user.model.js");
+const Product = require("../model/product.model.js");
 
 // Create a new user
 const registerUser = async (req, res) => {
@@ -44,4 +45,72 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+// Create a new product
+const createProduct = async (req, res) => {
+  try {
+    const { name, description, price, category, images, ratings, discount } =
+      req.body;
+
+    // Check if required fields are provided
+    if (!name || !description || !price || !category || !images || !ratings) {
+      return res.status(400).json({
+        message:
+          "All fields (name, description, price, category, images, ratings) are required.",
+      });
+    }
+
+    // Create a new product instance
+    const newProduct = new Product({
+      name,
+      description,
+      price,
+      category,
+      images,
+      ratings,
+      discount,
+    });
+
+    // Save the product to the database
+    await newProduct.save();
+
+    // Send response back to the client
+    res.status(201).json({
+      message: "Product created successfully",
+      product: newProduct,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to create product", error });
+  }
+};
+
+const updateProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { name, description, price } = req.body;
+
+    if (!name || !description || !price) {
+      return res.status(400).json({
+        message: "All fields (name, description, price) are required.",
+      });
+    }
+
+    const product = await Product.findByIdAndUpdate(
+      { _id: id },
+      { name, description, price },
+      { new: true, runValidators: true }
+    );
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.status(200).json({
+      updated: true,
+      product: product,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { registerUser, loginUser, updateProduct, createProduct };

@@ -198,3 +198,35 @@ project-root/
 ```
 
 ---
+
+## Milestone 12: My Products Page with User-Specific Product Display
+
+- **Endpoint Creation**: Developed a GET endpoint to fetch all products associated with the logged-in user's email from MongoDB.
+- **Frontend Integration**: Wrote a function in the frontend to retrieve user-specific product data from the backend.
+- **Dynamic Display**: Utilized the existing product card component to dynamically display the fetched products on the "My Products" page.
+- **Data Filtering**: Implemented filtering logic on the backend to ensure only products associated with the user's email are retrieved.
+- **Testing**: Verified the functionality of the endpoint and the dynamic display using browser tools and Postman.
+- **Future Enhancements**: Considered adding options for editing or deleting user-specific products.
+- **GitHub Updates**: Committed all changes related to the endpoint, frontend integration, and dynamic display to the repository.
+
+---
+
+## Milestone 13: Product Update Endpoint and Form Auto-fill
+
+- **Update Endpoint**: Developed a PUT endpoint to receive updated product data and modify the corresponding document in MongoDB.
+- **Frontend Integration**: Added an "Edit" button to the product card. Clicking it pre-fills the product form with existing data for editing.
+- **Form Auto-fill**: Implemented functionality to populate the product form with the selected product's details, enabling easy modification.
+- **Data Persistence**: Ensured that the updated product data is correctly saved to the MongoDB database.
+- **Testing**: Verified the update functionality using Postman and by testing the edit flow in the application.
+- **GitHub Updates**: Committed all changes related to the update endpoint and form auto-fill to the repository.
+
+---
+
+## Milestone 14: Product Delete Endpoint
+
+- **Delete Endpoint**: Created a DELETE endpoint to remove a product from MongoDB based on its ID.
+- **Frontend Integration**: Added a "Delete" button to the product card. Clicking it triggers the deletion of the corresponding product.
+- **Confirmation**: Implemented a confirmation dialog before deleting a product to prevent accidental deletions.
+- **Data Removal**: Ensured that the product is successfully removed from the MongoDB database.
+- **Testing**: Verified the delete functionality using Postman and by testing the delete flow in the application.
+- **GitHub Updates**: Committed all changes related to the delete endpoint and frontend integration to the repository.

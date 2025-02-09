@@ -1,67 +1,51 @@
 const mongoose = require("mongoose");
-const { v4: uuidv4 } = require("uuid");
 
 const productSchema = new mongoose.Schema(
   {
-    id: {
-      type: String,
-      // required: true,
-      default: () => uuidv4(),
-      unique: [true, "Product with this id already exists"],
-    },
+    id: { type: String, unique: true, required: true },
     name: {
       type: String,
       required: true,
       trim: true,
       minlength: [3, "Name must be at least 3 characters long."],
-      maxlength: [20, "Name must not exceed 20 characters."],
+      maxlength: [50, "Name must not exceed 50 characters."],
     },
     description: {
       type: String,
       required: true,
       trim: true,
-      minlength: [5, "Description must be at least 50 characters long."],
+      minlength: [3, "Description must be at least 5 characters long."],
     },
     price: {
       type: Number,
       required: true,
-      min: [0, "Price must be a positive number."],
+      min: [0, "Current price must be a positive number."],
     },
     category: {
       type: String,
       required: true,
       trim: true,
-    },
-    inStock: {
-      type: Boolean,
-      default: true,
+      enum: [
+        "Electronics",
+        "Accessories",
+        "Gaming",
+        "Home Appliances",
+        "Fashion",
+      ],
     },
     images: {
       type: [String],
+      required: [true, "At least one image must be uploaded."],
       validate: {
         validator: function (v) {
           return v.length > 0;
         },
         message: "At least one image must be uploaded.",
       },
-      required: true,
-    },
-    ratings: {
-      type: Number,
-      required: true,
-      min: [1, "Ratings must be at least 1."],
-      max: [5, "Ratings cannot exceed 5."],
-      set: (value) =>
-        isNaN(value) || value === "" ? 1 : Math.round(value * 100) / 100, // Default to 1 if invalid
-    },
-    discount: {
-      type: Number,
-      min: [0, "Discount cannot be negative."],
-      max: [100, "Discount cannot exceed 100%."],
     },
   },
   {
-    timestamps: true, // Adds createdAt and updatedAt fields
+    timestamps: true,
   }
 );
 

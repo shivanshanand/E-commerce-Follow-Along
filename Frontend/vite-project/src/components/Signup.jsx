@@ -7,6 +7,22 @@ const Signup = () => {
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
 
+  // Use state for form values
+  const [userDetails, setUserDetails] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  // Handle changes in form fields
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserDetails((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const validateForm = (userDetails) => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,24 +46,19 @@ const Signup = () => {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const userDetails = {
-      name: formData.get("user"),
-      email: formData.get("email"),
-      password: formData.get("password"),
-    };
+    console.log("User Details:", userDetails); // Log the user details here
 
     if (!validateForm(userDetails)) {
       return;
     }
 
     try {
-      const response = await fetch("http://localhost:7000/create", {
+      const response = await fetch("http://localhost:7000/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userDetails),
+        body: JSON.stringify(userDetails), // Send the user details as JSON
       });
 
       const result = await response.json();
@@ -58,7 +69,7 @@ const Signup = () => {
         alert(result.message);
       }
     } catch (error) {
-      console.error("Error during signup", error);
+      console.log("Error during signup", error);
       alert("Something went wrong, please try again :(");
     }
   };
@@ -123,7 +134,9 @@ const Signup = () => {
               type="text"
               placeholder="Enter your name"
               id="user"
-              name="user"
+              name="name" // Bind name attribute here
+              value={userDetails.name} // Bind to state
+              onChange={handleInputChange} // Handle changes
               className="p-3 rounded-md border border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-gray-900 text-gray-300"
               required
             />
@@ -142,9 +155,9 @@ const Signup = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              name="email"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              title="Please enter a valid email address (e.g., user@example.com)"
+              name="email" // Bind email attribute here
+              value={userDetails.email} // Bind to state
+              onChange={handleInputChange} // Handle changes
               className="p-3 rounded-md border border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-gray-900 text-gray-300"
               required
             />
@@ -163,10 +176,9 @@ const Signup = () => {
             <input
               type="password"
               placeholder="Enter your password"
-              name="password"
-              minLength="8"
-              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
-              title="Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character"
+              name="password" // Bind password attribute here
+              value={userDetails.password} // Bind to state
+              onChange={handleInputChange} // Handle changes
               className="p-3 rounded-md border border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-gray-900 text-gray-300"
               required
             />

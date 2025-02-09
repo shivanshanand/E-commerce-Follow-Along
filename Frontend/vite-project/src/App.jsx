@@ -9,7 +9,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Signup />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/product-form" element={<ProductForm />} />
+        <Route path="/productform" element={<ProductForm />} />
+        <Route path="/productform/:id" element={<ProductForm />} />
       </Routes>
     </Router>
   );
