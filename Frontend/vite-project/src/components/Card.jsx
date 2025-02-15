@@ -1,15 +1,20 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ index, name, image, price, description, category }) => {
+const Card = ({ index, name, images, price, description, category }) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
     if (index) {
-      navigate(`/productform/${index}`); // Navigate to edit page with product ID
+      navigate(`/productform/${index}`); 
     } else {
       console.error("Product ID is missing");
     }
+  };
+
+  const handlecart = () => {
+    navigate(`/cart`);
+    
   };
 
   const handleDelete = async () => {
@@ -45,10 +50,10 @@ const Card = ({ index, name, image, price, description, category }) => {
 
   return (
     <div className="bg-gray-800 p-4 rounded-xl shadow-lg w-72 h-[32rem] flex flex-col border border-gray-700">
-      {/* Product Image */}
+      {/* Product Images */}
       <div className="h-40 w-full mb-3">
         <img
-          src={image}
+          src={images}
           alt={name}
           className="w-full h-full object-cover rounded-xl"
         />
@@ -83,6 +88,13 @@ const Card = ({ index, name, image, price, description, category }) => {
           onClick={handleDelete}
         >
           Delete
+        </button>
+
+        <button
+          className="text-white bg-red-700 px-4 py-2 rounded-lg hover:bg-red-800"
+          onClick={handlecart}
+        >
+          Add to Cart
         </button>
       </div>
     </div>

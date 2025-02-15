@@ -17,7 +17,9 @@ const createProduct = async (req, res) => {
         .json({ message: "At least one image must be uploaded." });
     }
 
-    const imagePaths = req.files ? req.files.map((file) => file.path) : [];
+    const imagePaths = req.files
+      ? req.files.map((file) => `http://localhost:7000/${file.path}`)
+      : [];
 
     const newProduct = new Product({
       id: uuidv4(),
@@ -126,8 +128,9 @@ const getProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find(); // Fetch all products from the database
-    res.status(200).json(products); // Return the products as a JSON response
+    const products = await Product.find();
+
+    res.status(200).json(products);
   } catch (error) {
     console.error("Error fetching products:", error);
     res.status(500).json({ message: "Error fetching products." });

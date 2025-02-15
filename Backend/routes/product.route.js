@@ -20,6 +20,7 @@ router.delete("/:id", deleteProduct);
 
 // Get a single product by ID
 router.get("/:id", getProduct);
+
 router.get("/", getAllProducts);
 
 module.exports = router;

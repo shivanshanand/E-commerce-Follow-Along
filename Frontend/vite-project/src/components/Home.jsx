@@ -54,7 +54,7 @@ const Home = () => {
               price={item.price}
               category={item.category}
               description={item.description}
-              image={item.image}
+              images={item.images[0]}
             />
           ))}
         </div>

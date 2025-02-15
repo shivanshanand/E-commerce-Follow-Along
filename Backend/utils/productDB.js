@@ -1,8 +1,8 @@
 const initialProducts = [
   {
     name: "Smartphone X12",
-    price: 699, // Renamed from currPrice to price
-    image: [
+    price: 699,
+    images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ0Mf-I1HKvUfKOmQ_A3FI_6YbWLDVu1CsfA&s",
     ],
     description:
@@ -11,8 +11,8 @@ const initialProducts = [
   },
   {
     name: "Laptop Pro 15",
-    price: 1299, // Renamed from currPrice to price
-    image: [
+    price: 1299,
+    images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2eIy6oKwQ_jpvNr7jmyo0ZbUYEv_3v1EZJQ&s",
     ],
     description:
@@ -21,8 +21,8 @@ const initialProducts = [
   },
   {
     name: "Wireless Earbuds Z",
-    price: 149, // Renamed from currPrice to price
-    image: [
+    price: 149,
+    images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjnJQi7uqNTauyCG4h16NASRkMvcq7v4ROHA&s",
     ],
     description:
@@ -31,8 +31,8 @@ const initialProducts = [
   },
   {
     name: 'Smart TV 50"',
-    price: 799, // Renamed from currPrice to price
-    image: [
+    price: 799,
+    images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc_s3zzqY34zTBJeE1v4r-1SQhX8uMXD5mFw&s",
     ],
     description: "A 50-inch 4K smart TV with HDR support and a sleek design.",
@@ -40,8 +40,8 @@ const initialProducts = [
   },
   {
     name: "Gaming Console 5",
-    price: 499, // Renamed from currPrice to price
-    image: [
+    price: 499,
+    images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgp1FmaMM6hRjNT5QLgJcUwPVeJzIJctLg7Q&s",
     ],
     description:
@@ -50,8 +50,8 @@ const initialProducts = [
   },
   {
     name: "Bluetooth Speaker Mini",
-    price: 99, // Renamed from currPrice to price
-    image: [
+    price: 99,
+    images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlhivcImoon9Uimi40v7EaguHw8CulI3C09g&s",
     ],
     description:
@@ -60,8 +60,8 @@ const initialProducts = [
   },
   {
     name: "4K Action Camera",
-    price: 299, // Renamed from currPrice to price
-    image: [
+    price: 299,
+    images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7QjjDiBlRoWtHFm0SD5YzVFBU38NpmdqpeQ&s",
     ],
     description:
@@ -70,8 +70,8 @@ const initialProducts = [
   },
   {
     name: "Smartwatch Elite",
-    price: 199, // Renamed from currPrice to price
-    image: [
+    price: 199,
+    images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN5Ryt_lgOFDX5g3zufHQaYX5gJNJuXxDulg&s",
     ],
     description:
@@ -80,8 +80,8 @@ const initialProducts = [
   },
   {
     name: "Gaming Headset X",
-    price: 89, // Renamed from currPrice to price
-    image: [
+    price: 89,
+    images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDR5iFW-FzLNuBQuFx2mE-tspPMtIgePmn_Q&s",
     ],
     description:
@@ -89,10 +89,9 @@ const initialProducts = [
     category: "Gaming",
   },
   {
-    // id: "10",
     name: "External SSD 1TB",
     price: 149,
-    image: [
+    images: [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBMwhoITT8ED4OXAH7yeRSQ2Ss9P8U1TxN_w&s",
     ],
     description: "Fast and reliable 1TB external SSD for storage and backups.",
