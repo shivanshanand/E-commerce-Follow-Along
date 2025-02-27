@@ -29,7 +29,7 @@ const Card = ({ index, name, images, price, description, category }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:7000/api/products/${index}`,
+        `http://localhost:7100/api/products/${index}`,
         {
           method: "DELETE",
         }

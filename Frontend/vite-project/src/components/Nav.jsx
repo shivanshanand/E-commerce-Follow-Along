@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 export const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Hardcoded userId for now
+  const userId = useParams();
 
   // Toggle the hamburger menu
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -33,7 +36,7 @@ export const Nav = () => {
           <Link to="#my-products">My Products</Link>
         </li>
         <li className="nav-link text-white cursor-pointer">
-          <Link to="/cart">Cart</Link>
+          <Link to={`/cart/${userId}`}>Cart</Link>
         </li>
       </div>
     </div>

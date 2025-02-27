@@ -9,7 +9,7 @@ const userRoutes = require("./routes/user.route");
 const productRoutes = require("./routes/product.route");
 const emailRoutes = require("./routes/email.route");
 const uploadRoutes = require("./routes/upload.route");
-const port = 7000;
+const cartRoutes = require("./routes/cart.route");
 
 dotenv.config();
 connectDB();
@@ -21,7 +21,7 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // Serve static files
+app.use("/uploads", express.static(path.join(__dirname, "uploads"))); 
 
 // Routes
 app.use("/api/users", userRoutes);
@@ -29,8 +29,10 @@ app.use("/api/products", productRoutes);
 app.use("/api/email", emailRoutes);
 app.use("/api/files", uploadRoutes);
 
+app.use("/api/cart",cartRoutes)
+
 // Start Server
-const PORT = process.env.PORT || 7000;
-app.listen(port, () => {
+const PORT = process.env.PORT || 7100;
+app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });

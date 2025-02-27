@@ -18,7 +18,7 @@ const createProduct = async (req, res) => {
     }
 
     const imagePaths = req.files
-      ? req.files.map((file) => `http://localhost:7000/${file.path}`)
+      ? req.files.map((file) => `http://localhost:7100/${file.path}`)
       : [];
 
     const newProduct = new Product({

@@ -241,3 +241,21 @@ project-root/
 - **Smooth Navigation**: Ensured smooth transitions between pages using React Router.
 - **Testing**: Verified the navigation functionality and responsiveness across different devices.
 - **GitHub Updates**: Committed all changes related to the `Nav` component and its integration to the repository.
+
+## Milestone 16: Product Details Page
+
+- **Product Details Page**: Created a new page to display detailed information about individual products.
+- **Dynamic Data**: Implemented dynamic rendering of product details based on the selected product.
+- **Quantity and Add to Cart**: Added quantity selection and "Add to Cart" functionality to the product details page.
+- **Testing**: Verified the product details page functionality and data display.
+- **GitHub Updates**: Committed all changes related to the product details page to the repository.
+
+---
+
+## Milestone 17: Cart Functionality Implementation
+
+- **Cart Schema Design**: Modified user schema to store cart products with necessary product details and quantities.
+- **Cart Storage Endpoint**: Created POST endpoint to handle product details reception and persistent cart storage in database.
+- **Data Validation**: Implemented checks for product availability and valid quantities before cart updates.
+- **Testing**: Verified cart item persistence and user-specific cart isolation.
+- **GitHub Updates**: Committed schema modifications and endpoint implementation to repository.

@@ -15,11 +15,11 @@ const ProductForm = () => {
 
   // Fetch product details for editing
   useEffect(() => {
-    if (!id) return; 
+    if (!id) return;
 
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:7000/api/products/${id}`);
+        const res = await fetch(`http://localhost:7100/api/products/${id}`);
         const product = await res.json();
 
         setFormData({
@@ -53,32 +53,31 @@ const ProductForm = () => {
   // Basic validation before form submission
   const validateForm = () => {
     const errors = {};
-  
+
     if (!formData.name || formData.name.length < 3) {
       errors.name = "Name must be at least 3 characters.";
     }
-  
+
     if (!formData.price || formData.price <= 0) {
       errors.price = "Enter a valid price.";
     }
-  
+
     if (!formData.category) {
       errors.category = "Category is required.";
     }
-  
+
     if (productImages.length === 0) {
       errors.images = "Add at least one image.";
     }
-  
+
     setErrors(errors);
-    return Object.values(errors).length === 0; 
+    return Object.values(errors).length === 0;
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) return; 
+    if (!validateForm()) return;
 
     const data = new FormData();
 
@@ -95,8 +94,8 @@ const ProductForm = () => {
     try {
       const method = id ? "PUT" : "POST";
       const url = id
-        ? `http://localhost:7000/api/products/${id}`
-        : "http://localhost:7000/api/products/create";
+        ? `http://localhost:7100/api/products/${id}`
+        : "http://localhost:7100/api/products/create";
 
       const response = await fetch(url, {
         method,
