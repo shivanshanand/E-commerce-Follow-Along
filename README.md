@@ -260,6 +260,8 @@ project-root/
 - **Testing**: Verified cart item persistence and user-specific cart isolation.
 - **GitHub Updates**: Committed schema modifications and endpoint implementation to repository.
 
+---
+
 ## Milestone 18: Cart Data Retrieval System
 
 - **Cart Data Endpoint**: Developed GET endpoint to fetch all cart products using authenticated user's email.
@@ -267,3 +269,15 @@ project-root/
 - **Security Checks**: Added authentication middleware to ensure user-specific cart access.
 - **Testing**: Validated endpoint response structure and data accuracy.
 - **GitHub Updates**: Pushed cart retrieval endpoint implementation.
+
+---
+
+## Milestone 19: Cart Management Interface
+
+- **Cart Page Implementation**: Created frontend cart page with dynamic product display using fetched cart data.
+- **Quantity Controls**: Added interactive +/- buttons for real-time quantity adjustment per product.
+- **Quantity Update Endpoints**: Built PUT endpoints for increment/decrement operations with inventory checks.
+- **Live Price Calculation**: Implemented frontend total calculation based on quantity changes.
+- **Sync Optimization**: Added debouncing to quantity update API calls.
+- **Testing**: Verified quantity synchronization between frontend and database.
+- **GitHub Updates**: Committed cart page components and quantity management endpoints.

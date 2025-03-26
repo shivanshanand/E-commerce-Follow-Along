@@ -74,7 +74,7 @@ const getCartItems = async (req, res) => {
       .exec();
 
     if (!cart || cart.items.length === 0) {
-      return res.status(404).json({ message: "Your cart is empty" });
+      return res.status(200).json({ items: [] });
     }
 
     res.status(200).json(cart);
@@ -83,4 +83,74 @@ const getCartItems = async (req, res) => {
   }
 };
 
-module.exports = { getCartItems, addToCart };
+const updateCartQuantity = async (req, res) => {
+  try {
+    const { email, productId, action } = req.body;
+
+    if (!email || !productId || !action) {
+      return res
+        .status(400)
+        .json({ message: "Email, productId, and action are required" });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    let cart = await Cart.findOne({ userId: user._id });
+
+    if (!cart) {
+      // 🛒 Create a new cart if it doesn't exist and user is trying to add an item
+      if (action === "increase") {
+        cart = new Cart({
+          userId: user._id,
+          items: [{ productId, quantity: 1 }],
+        });
+        await cart.save();
+        return res
+          .status(200)
+          .json({ message: "Cart created and product added", cart });
+      } else {
+        return res.status(404).json({ message: "Product not found in cart" });
+      }
+    }
+
+    // Find the product in cart
+    const productIndex = cart.items.findIndex(
+      (item) => item.productId.toString() === productId
+    );
+
+    if (productIndex === -1) {
+      if (action === "increase") {
+        // Add new product if increasing quantity
+        cart.items.push({ productId, quantity: 1 });
+      } else {
+        return res.status(404).json({ message: "Product not found in cart" });
+      }
+    } else {
+      // Update quantity
+      if (action === "increase") {
+        cart.items[productIndex].quantity += 1;
+      } else if (action === "decrease") {
+        cart.items[productIndex].quantity -= 1;
+
+        // Remove product if quantity is 0
+        if (cart.items[productIndex].quantity <= 0) {
+          cart.items.splice(productIndex, 1);
+        }
+      }
+    }
+
+    await cart.save();
+    return res.status(200).json({ message: "Cart updated", cart });
+  } catch (error) {
+    console.error("Error updating cart:", error);
+    return res
+      .status(500)
+      .json({ message: "Server error", error: error.message });
+  }
+};
+
+module.exports = { getCartItems, addToCart, updateCartQuantity };
