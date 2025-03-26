@@ -11,8 +11,6 @@ const Login = () => {
     const username = e.target.user.value;
     const password = e.target.password.value;
 
-    // console.log("Login Data:", { username, password });
-
     try {
       const response = await fetch("http://localhost:7100/api/users/login", {
         method: "POST",

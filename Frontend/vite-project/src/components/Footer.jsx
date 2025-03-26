@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 import {
   FaFacebookF,
   FaTwitter,
@@ -7,8 +9,24 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleSubscribe = (e) => {
+    e.preventDefault(); 
+    if (email.trim() === "") {
+      return; 
+    }
+    setSuccessMessage("Subscribed successfully!");
+    setEmail("");
+
+    setTimeout(() => {
+      setSuccessMessage("");
+    }, 3000);
+  };
+
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 text-white py-12 h-fit">
       <div className="max-w-screen-xl mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
           {/* Company Info */}
@@ -113,15 +131,23 @@ const Footer = () => {
             <p className="text-sm mb-4">
               Get the latest updates and promotions directly to your inbox.
             </p>
-            <form className="flex gap-2">
+            <form className="flex flex-col gap-2" onSubmit={handleSubscribe}>
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="p-2 rounded-md w-64 text-gray-900"
               />
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+              <button
+                type="submit"
+                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+              >
                 Subscribe
               </button>
+              {successMessage && (
+                <p className="text-green-500 text-sm mt-2">{successMessage}</p>
+              )}
             </form>
           </div>
 
@@ -143,8 +169,8 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Footer Bottom */}
-      <div className="bg-gray-800 text-center py-4 mt-3">
+      {/* Footer Bottom - Moved inside footer and at the very bottom */}
+      <div className="bg-gray-800 text-center py-4 border-t border-gray-700 mt-12">
         <p className="text-sm text-gray-400">
           &copy; {new Date().getFullYear()} Helmet Store. All rights reserved.
         </p>
